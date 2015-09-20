@@ -15,6 +15,8 @@ http://jsfiddle.net/3jhcccjc/
 
 ## Creating Random Numbers 
 
+Each instance of Randy will create it's own (pseudo)unique sequence of random numbers, unless the seed is given.
+
 ```javascript
 
 var generator = randy();
