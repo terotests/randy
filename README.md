@@ -1,4 +1,4 @@
-# Randy - pseudo random number generator
+# Randy - pseudorandom number generator
 
 With randy you can initialize seed and create predictable or unpredicatable randon number sequence, which ever pleases you most.
 Based on Linear congruential generator implementations 
