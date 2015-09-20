@@ -9,8 +9,6 @@
     (function (_myTrait_) {
       var _localSeed;
 
-      // Initialize static variables here...
-
       if (_myTrait_.__traitInit && !_myTrait_.hasOwnProperty('__traitInit')) _myTrait_.__traitInit = _myTrait_.__traitInit.slice();
       if (!_myTrait_.__traitInit) _myTrait_.__traitInit = [];
       _myTrait_.__traitInit.push(function (seed) {
