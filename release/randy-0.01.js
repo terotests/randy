@@ -53,6 +53,14 @@
         this.z = val;
         this.seed = val;
       };
+
+      /**
+       * Using two separate random number sequences to reduce likelihood of collision.
+       * @param float t
+       */
+      _myTrait_.uuid = function (t) {
+        return this.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      };
     })(this);
   };
 

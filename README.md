@@ -13,15 +13,22 @@ LCGs should not be used for applications where high-quality randomness is critic
 
 http://jsfiddle.net/3jhcccjc/
 
-## Usage 
+## Creating Random Numbers 
 
 ```javascript
 
-// initialize based on timestamp value
 var generator = randy();
 
 // generate pseudorandom number between 0..1
 var value = generator.random();
+
+```
+
+## Creating UUID
+
+```javascript
+var generator = randy();
+var new_uuid = generator.uuid();
 
 ```
 
@@ -66,6 +73,7 @@ MIT.
 - [random](README.md#randy_random)
 - [randRaw](README.md#randy_randRaw)
 - [setSeed](README.md#randy_setSeed)
+- [uuid](README.md#randy_uuid)
 
 
 
@@ -132,6 +140,14 @@ return this.z / this.m;
 ```javascript
 this.z = val;
 this.seed = val; 
+```
+
+### <a name="randy_uuid"></a>randy::uuid(t)
+
+Using two separate random number sequences to reduce likelihood of collision.
+```javascript
+return  this.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15);
 ```
 
 
