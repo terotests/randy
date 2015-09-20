@@ -26,6 +26,8 @@ var value = generator.random();
 
 ## Creating UUID
 
+With Randy you can create JavaScript UUID based on combination of two independent pseudorandom sequences - the native JavaScript Math.random and the sequence created by Randy. This may reduce the risk of having same seed on two different machines when creating random numbers from JavaScript.
+
 ```javascript
 var generator = randy();
 var new_uuid = generator.uuid();
@@ -35,7 +37,7 @@ var new_uuid = generator.uuid();
 ## Using with custom seed
 
 ```javascript
-// Generate predicatable values
+// Generate predicatable random values
 var generator = randy(123456);
 
 ```
