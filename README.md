@@ -9,6 +9,10 @@ https://en.wikipedia.org/wiki/Linear_congruential_generator
 
 LCGs should not be used for applications where high-quality randomness is critical. For example, it is not suitable for a Monte Carlo simulation because of the serial correlation (among other things). They also must not be used for cryptographic applications; see cryptographically secure pseudo-random number generator for more suitable generators. If a linear congruential generator is seeded with a character and then iterated once, the result is a simple classical cipher called an affine cipher; this cipher is easily broken by standard frequency analysis.
 
+## Example with distribution analysis
+
+http://jsfiddle.net/3jhcccjc/
+
 ## Usage 
 
 ```javascript
