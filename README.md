@@ -29,15 +29,114 @@ var generator = randy(123456);
 
 ```
 
-## Initialize with custom cenerator
+## License
 
-You can initialize with custom parameters to emulate behaviour of some known random number generators:
+MIT.
 
-https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+ 
+
+
+   
+#### Class randy
+
+
+- [random](README.md#randy_random)
+- [randRaw](README.md#randy_randRaw)
+- [setSeed](README.md#randy_setSeed)
+
+
+
+   
+
+
+   
+
+
+
+
+
+   
+# Class randy
+
+
+The class has following internal singleton variables:
+        
+* _localSeed
+        
+        
+### randy::constructor( seed )
 
 ```javascript
-// Generate predicatable values
-var generator = randy(null, 1 << 31 , 1103515245, 12345);
+
+// default values from Numerical Recipes
+this.m = 4294967296;
+this.a = 1664525;
+this.c = 1013904223;
+
+if(seed) {
+    // predicatable sequence
+    this.setSeed( seed );
+} else {
+    // using double seed based on script's first runtime and the
+    // JavaScript own pseudrandom sequence
+    if(!_localSeed) _localSeed = ( new Date()).getTime();
+    _localSeed++;
+    this.setSeed( Math.random() * _localSeed);
+}
 
 ```
+        
+### <a name="randy_random"></a>randy::random(t)
+
+
+```javascript
+return this.randRaw();
+```
+
+### <a name="randy_randRaw"></a>randy::randRaw(t)
+
+
+```javascript
+// lgc step
+this.z = (this.a * this.z + this.c) % this.m;
+return this.z / this.m;
+
+```
+
+### <a name="randy_setSeed"></a>randy::setSeed(val)
+
+
+```javascript
+this.z = val;
+this.seed = val; 
+```
+
+
+
+   
+
+
+   
+
+
+
 
