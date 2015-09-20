@@ -36,7 +36,7 @@ var new_uuid = generator.uuid();
 
 ```
 
-Here is a small test for UUID generation efficiency;
+Here is a small test for UUID generation collisions;
 http://jsfiddle.net/euccvm0k/1/
 
 ## Using with custom seed
