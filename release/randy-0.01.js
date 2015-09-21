@@ -39,8 +39,10 @@
        * @param float t
        */
       _myTrait_.random = function (t) {
-        //return this.randRaw();
-        return this.randRandy();
+        if (this.gen1) {
+          return this.randRandy();
+        }
+        return this.randRaw();
       };
 
       /**
