@@ -11,12 +11,17 @@
 
       if (_myTrait_.__traitInit && !_myTrait_.hasOwnProperty('__traitInit')) _myTrait_.__traitInit = _myTrait_.__traitInit.slice();
       if (!_myTrait_.__traitInit) _myTrait_.__traitInit = [];
-      _myTrait_.__traitInit.push(function (seed) {
+      _myTrait_.__traitInit.push(function (seed, subGenerator) {
 
         // default values from Numerical Recipes
         this.m = 4294967296;
         this.a = 1664525;
         this.c = 1013904223;
+
+        if (!subGenerator) {
+          this.gen1 = new randy(new Date().getTime(), true);
+          this.gen2 = new randy(Math.random() * this.m, true);
+        }
 
         if (seed) {
           // predicatable sequence
@@ -34,7 +39,23 @@
        * @param float t
        */
       _myTrait_.random = function (t) {
-        return this.randRaw();
+        //return this.randRaw();
+        return this.randRandy();
+      };
+
+      /**
+       * @param float t
+       */
+      _myTrait_.randRandy = function (t) {
+        var value = this.gen1.random();
+        var value2 = this.gen2.random();
+
+        // 4294967296 -> 32 bits
+        var f1 = value * 134217728; // 30 bits
+        var f2 = value2 * 134217728; // 30 bits
+
+        var new_f = (f1 ^ f2) / 134217728;
+        return new_f;
       };
 
       /**
