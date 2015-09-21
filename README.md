@@ -78,6 +78,7 @@ MIT.
 
 
 - [random](README.md#randy_random)
+- [randRandy](README.md#randy_randRandy)
 - [randRaw](README.md#randy_randRaw)
 - [setSeed](README.md#randy_setSeed)
 - [uuid](README.md#randy_uuid)
@@ -102,7 +103,7 @@ The class has following internal singleton variables:
 * _localSeed
         
         
-### randy::constructor( seed )
+### randy::constructor( seed, subGenerator )
 
 ```javascript
 
@@ -110,6 +111,11 @@ The class has following internal singleton variables:
 this.m = 4294967296;
 this.a = 1664525;
 this.c = 1013904223;
+
+if(!subGenerator) {
+    this.gen1 = new randy( ( new Date()).getTime(), true );
+    this.gen2 = new randy( Math.random() * this.m, true );
+}
 
 if(seed) {
     // predicatable sequence
@@ -128,7 +134,23 @@ if(seed) {
 
 
 ```javascript
-return this.randRaw();
+//return this.randRaw();
+return this.randRandy();
+```
+
+### <a name="randy_randRandy"></a>randy::randRandy(t)
+
+
+```javascript
+var value  = this.gen1.random();
+var value2 = this.gen2.random();
+
+// 4294967296 -> 32 bits
+var f1 = value  * 0x8000000; // 30 bits
+var f2 = value2 * 0x8000000; // 30 bits
+
+var new_f = ( f1 ^ f2 ) / 0x8000000;
+return new_f;
 ```
 
 ### <a name="randy_randRaw"></a>randy::randRaw(t)
